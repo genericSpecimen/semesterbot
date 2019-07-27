@@ -12,6 +12,8 @@ An attempt at managing college life using a telegram bot. This bot is written us
 
 * Make sure you have your go workspace, `GOPATH` set up correctly. For more information, read [this](https://golang.org/doc/code.html).
 
+* Then , run
+
 	`$ go get -u github.com/genericSpecimen/semesterbot`
 
 * A binary executable will be now present in `$GOPATH/bin`. If you want to run it from anywhere, add this path to your `PATH` environment variable.
