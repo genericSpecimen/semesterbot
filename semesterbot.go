@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"fmt"
+	//"time"
 	"strings"
 	"net/http"
 	"net/url"
@@ -46,6 +47,32 @@ func getNotices(msg *tgba.MessageConfig) {
 	})
 }
 
+func monitornotices(msg *tgba.MessageConfig) {
+	f, err := os.Open("scratchpad/diff.html")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+	doc, err := goquery.NewDocumentFromReader(f)
+	if err != nil {
+		panic(err)
+	}
+	base_url := "https://rlacollege.edu.in/"
+	// use the goquery document...
+	doc.Find("a").Each(func(i int, s *goquery.Selection) {
+		notice_url, _ := s.Attr("href")
+
+		parts := strings.Split(notice_url, "/")
+		// ) is wrongfully parsed as markdown syntax, resulting in broken links in msg
+		parts[2] = url.QueryEscape(parts[2])
+		notice_url = strings.Join(parts[:], "/")
+
+		title := s.Text()
+		msg.Text += fmt.Sprintf("%d: [%s](%s)\n", i, title, base_url + notice_url)
+	})
+	
+}
+
 func main() {
 	bot, err := tgba.NewBotAPI(os.Getenv("TELEGRAM_APITOKEN"))
 	if err != nil {
@@ -86,6 +113,11 @@ func main() {
 					msg.Text = "[RLA Website](https://rlacollege.edu.in/)"
 
 				case "notices": getNotices(&msg)
+
+				case "newnotice":
+					msg.ParseMode = "Markdown"
+					monitornotices(&msg)
+					//time.Sleep(20 * time.Second)
 
 				default: msg.Text = "I don't know that command"
 			}
