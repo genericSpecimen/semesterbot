@@ -24,6 +24,7 @@ Now we can run our bot.
 
 ```bash
 source env/bin/activate
+export TG_TOKEN='<YOUR TOKEN>'
 python bot.py
 ```
 
