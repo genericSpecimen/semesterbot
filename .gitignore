@@ -1,3 +1,10 @@
-diff.html
-old.php
-new.php
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+env
+
+geckodriver.log
+

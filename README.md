@@ -1,22 +1,33 @@
 # semesterbot
 
-An attempt at managing college life using a telegram bot. This bot is written using the [go-telegram-bot-api](https://github.com/go-telegram-bot-api/telegram-bot-api).
+An attempt at managing college life using a telegram bot.
 
-## Dependencies
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-1. [go](https://golang.org/)
-2. [go-telegram-bot-api](https://github.com/go-telegram-bot-api/telegram-bot-api)
-3. [goquery](https://github.com/PuerkitoBio/goquery)
+## Features
 
-## Installation
+* Tracks changes to a university website.
 
-* Make sure you have your go workspace, `GOPATH` set up correctly. For more information, read [this](https://golang.org/doc/code.html).
+## Run it yourself
 
-* Then, run
+```bash
+# clone the repo
+git clone https://github.com/genericSpecimen/semesterbot.git
 
-	`$ go get -u github.com/genericSpecimen/semesterbot`
+cd semesterbot/
 
-* A binary executable will be now present in `$GOPATH/bin`. If you want to run it from anywhere, add this path to your `PATH` environment variable.
+# create a vitual environment and install dependencies
+make start
+```
 
-	`$ semesterbot`
+Now we can run our bot.
 
+```bash
+source env/bin/activate
+python bot.py
+```
+
+## Made with
+
+* [python-telegram-bot](https://python-telegram-bot.org/)
+* [selenium](https://selenium-python.readthedocs.io/)
