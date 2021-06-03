@@ -78,7 +78,6 @@ def check_website(update, context):
 
 if __name__ == '__main__':
     TOKEN = os.getenv('TG_TOKEN')
-    print(TOKEN)
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
     bot = telegram.Bot(token=TOKEN)
